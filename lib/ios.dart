@@ -107,7 +107,7 @@ void overwriteDefaultIcons(IosIconTemplate template, Image image) {
 /// interpolation)
 /// https://github.com/fluttercommunity/flutter_launcher_icons/issues/101#issuecomment-495528733
 void saveNewIcons(IosIconTemplate template, Image image, String newIconName) {
-  final String newIconFolder = iosAssetFolder + newIconName + '.appiconset/';
+  final String newIconFolder = iosAssetFolder + newIconName + 'AppIcon.appiconset/';
   final Image newFile = createResizedImage(template, image);
   File(newIconFolder + 'Icon-App' + template.name + '.png')
       .create(recursive: true)
@@ -173,7 +173,7 @@ void modifyContentsFile(String flavor) {
       iosAssetFolder + flavor + 'AppIcon.appiconset/Contents.json';
   File(newIconFolder).create(recursive: true).then((File contentsJsonFile) {
     final String contentsFileContent =
-        generateContentsFileAsString('App-Icon');
+        generateContentsFileAsString('Icon-App');
     contentsJsonFile.writeAsString(contentsFileContent);
   });
 }
