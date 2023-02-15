@@ -65,7 +65,7 @@ void createIcons(FlutterLauncherIconsConfig config, String? flavor) {
     final String catalogName = '${flavor}AppIcon';
     printStatus('Building iOS launcher icon for $flavor');
     for (IosIconTemplate template in iosIcons) {
-      saveNewIcons(template, image, catalogName);
+      saveNewIcons(template, image, flavor);
     }
     iconName = iosDefaultIconName;
     changeIosLauncherIcon('Icon-App', flavor);
@@ -109,7 +109,7 @@ void overwriteDefaultIcons(IosIconTemplate template, Image image) {
 void saveNewIcons(IosIconTemplate template, Image image, String newIconName) {
   final String newIconFolder = iosAssetFolder + newIconName + '.appiconset/';
   final Image newFile = createResizedImage(template, image);
-  File(newIconFolder + newIconName + template.name + '.png')
+  File(newIconFolder + 'Icon-App' + template.name + '.png')
       .create(recursive: true)
       .then((File file) {
     file.writeAsBytesSync(encodePng(newFile));
