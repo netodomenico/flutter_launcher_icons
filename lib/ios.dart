@@ -69,7 +69,7 @@ void createIcons(FlutterLauncherIconsConfig config, String? flavor) {
     }
     iconName = iosDefaultIconName;
     changeIosLauncherIcon('Icon-App', flavor);
-    modifyContentsFile('${flavor}AppIcon');
+    modifyContentsFile(flavor);
   } else if (iosConfig is String) {
     // If the IOS configuration is a string then the user has specified a new icon to be created
     // and for the old icon file to be kept
@@ -168,12 +168,12 @@ Future<void> changeIosLauncherIcon(String iconName, String? flavor) async {
 }
 
 /// Create the Contents.json file
-void modifyContentsFile(String newIconName) {
+void modifyContentsFile(String flavor) {
   final String newIconFolder =
-      iosAssetFolder + newIconName + '.appiconset/Contents.json';
+      iosAssetFolder + flavor + 'AppIcon.appiconset/Contents.json';
   File(newIconFolder).create(recursive: true).then((File contentsJsonFile) {
     final String contentsFileContent =
-        generateContentsFileAsString(newIconName);
+        generateContentsFileAsString('App-Icon');
     contentsJsonFile.writeAsString(contentsFileContent);
   });
 }
