@@ -68,7 +68,7 @@ void createIcons(FlutterLauncherIconsConfig config, String? flavor) {
       saveNewIcons(template, image, flavor);
     }
     iconName = iosDefaultIconName;
-    changeIosLauncherIcon('Ciao-Icon-App', flavor);
+    changeIosLauncherIcon('"\$(ASSET_PREFIX)AppIcon"', flavor);
     modifyContentsFile(flavor);
   } else if (iosConfig is String) {
     // If the IOS configuration is a string then the user has specified a new icon to be created
